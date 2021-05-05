@@ -18,7 +18,7 @@ $ sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
 
 Open and edit this config file and navigate to the line `bind_address=127.0.0.1` and modify or add to `bind_address=0.0.0.0`. Here you're are allowing mysql server to listen to any connection instead of local.
 ```bash
-$ sudo sertice mysql restart
+$ sudo service mysql restart
 ```
 
 Restart the mysql service to reflect the new changes you have made to the configuration.
@@ -52,7 +52,7 @@ This command will grant user only read access, be careful with the permissions y
 GRANT ALL PRIVILEGES ON *.* TO 'remote_user'@'%';
 ```
 
-In case you already gave all the access and want to revoke and limit these permission to read only run following commands.
+In case you already gave all the access and want to revoke and limit these permissions to read only run following commands.
 
 ```sql
 # Shows the current grants for a user.
