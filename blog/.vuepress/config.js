@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'VuePress Blog Example',
-  description: 'A blog powered by VuePress',
+  title: 'Ahmed Waleed',
+  description: 'Fullstack LaravelPHP / Javascript developer, tailwind css lover, trying to be devops and learning Rustlang.',
   theme: '@vuepress/theme-blog', // OR shortcut: @vuepress/blog
   themeConfig: {
     /**
@@ -31,16 +31,16 @@ module.exports = {
       contact: [
         {
           type: "github",
-          link: "https://github.com/newsbielt703"
+          link: "https://github.com/AhmadWaleed"
         },
         {
           type: "mail",
-          link: "mailto:newsbielt703@gmail.com"
+          link: "mailto:ahmedwaleed11599@gmail.com"
         }
       ],
       copyright: [
         {
-          text: "Billy Chin © 2020",
+          text: "Ahmed Waleed © 2022",
           link: ""
         }
       ]
