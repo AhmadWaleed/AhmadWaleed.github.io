@@ -1,13 +1,13 @@
 ---
 title: Nil Interface{} Variadic Options In Go.
-date: 2020-12-31
-tags: 
+date: 2025-2-01
+tags:
   - golang
   - api
   - interface
   - testing
 author: Ahmed Waleed
-location: Dubai, UAE  
+location: Dubai, UAE
 ---
 
 In Go, variadic options provide a flexible way to structure your API, similar to the **functional options** pattern, allowing your API to evolve over time. I assume you're already familiar with functional options—if not, I highly recommend reading [Dave Cheney’s blog](https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis) on the topic.
@@ -27,12 +27,12 @@ type Addr string // Address to listen on. Default is ":0".
 
 type TestServer struct {
 	*httptest.Server
-	// Wait after *httptest.Server starts 
+	// Wait after *httptest.Server starts
 	// and before 	func(*TestServer) runs.
-	delay time.Duration 
+	delay time.Duration
 	// Default handler to use
 	// in httptest.NewServer.
-	h     http.Handler  
+	h     http.Handler
 	addr  Addr
 }
 

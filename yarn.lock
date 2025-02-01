@@ -1267,10 +1267,10 @@
     toml "^3.0.0"
     upath "^1.1.0"
 
-"@vuepress/theme-blog@^2.3.2":
-  version "2.3.2"
-  resolved "https://registry.yarnpkg.com/@vuepress/theme-blog/-/theme-blog-2.3.2.tgz#b3d2c43dd3f2542ccc9adb4fc557945d4c036f2b"
-  integrity sha512-568P2OZdeC5vdSWKSDCMMECWDUnT2HF9IIFne6xFPRBlLxQN56+vFOz1Wud2vkqG3S7Axr9uswf8yOCnuEzneA==
+"@vuepress/theme-blog@^2.3.3":
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/@vuepress/theme-blog/-/theme-blog-2.3.3.tgz#de5fa960f4c0eac7a8bb18a0fb1829cfcfe963ba"
+  integrity sha512-t/xx/LmevJVxX8xeBE3FG6FrzBlT0t72K7yNNlrWoiNCHcPuXYSBUg2H933f3w+9qPB+YyxGmzwRVNBUSnzNdw==
   dependencies:
     "@vuepress/plugin-blog" "^1.9.2"
     "@vuepress/plugin-medium-zoom" "^1.5.4"
