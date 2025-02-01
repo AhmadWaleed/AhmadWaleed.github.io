@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Nil Interface{} Variadic Options In Go. | Ahmed Waleed</title>
+    <meta name="generator" content="VuePress 1.6.0">
+    
+    <meta name="description" content="In Go, variadic options provide a flexible way to structure your API, similar to the functional options pattern, allowing your API to evolve over time. I assume you're already familiar with functi ...">
+    <link rel="preload" href="/assets/css/0.styles.f20e20f9.css" as="style"><link rel="preload" href="/assets/js/app.5a34f3f5.js" as="script"><link rel="preload" href="/assets/js/6.743e9d74.js" as="script"><link rel="preload" href="/assets/js/3.c32d983c.js" as="script"><link rel="preload" href="/assets/js/18.474a133a.js" as="script"><link rel="prefetch" href="/assets/js/10.69f07e0e.js"><link rel="prefetch" href="/assets/js/11.53f87820.js"><link rel="prefetch" href="/assets/js/12.7f4e875a.js"><link rel="prefetch" href="/assets/js/13.07629488.js"><link rel="prefetch" href="/assets/js/14.9227bdd2.js"><link rel="prefetch" href="/assets/js/15.6144428c.js"><link rel="prefetch" href="/assets/js/16.817d4768.js"><link rel="prefetch" href="/assets/js/17.7fb27a9d.js"><link rel="prefetch" href="/assets/js/4.00b7630e.js"><link rel="prefetch" href="/assets/js/5.631f1efc.js"><link rel="prefetch" href="/assets/js/7.a54a7d27.js"><link rel="prefetch" href="/assets/js/8.bde22fe0.js"><link rel="prefetch" href="/assets/js/9.ce3d6c06.js"><link rel="prefetch" href="/assets/js/vuejs-paginate.c82c253b.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.f20e20f9.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="vuepress-theme-blog__global-layout"><section id="header-wrapper"><header id="header"><div class="header-wrapper"><div class="title"><a href="/" class="nav-link home-link">Ahmed Waleed </a></div> <div class="header-right-wrap"><ul class="nav"><li class="nav-item"><a href="/" class="nav-link">Blog</a></li><li class="nav-item"><a href="/tag/" class="nav-link">Tags</a></li></ul> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></div></header></section> <div id="mobile-header"><div class="mobile-header-bar"><div class="mobile-header-title"><a href="/" class="nav-link mobile-home-link">Ahmed Waleed </a> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></div> <div class="mobile-menu-wrapper"><hr class="menu-divider"> <ul class="mobile-nav"><li class="mobile-nav-item"><a href="/" class="nav-link">Blog</a></li><li class="mobile-nav-item"><a href="/tag/" class="nav-link">Tags</a></li> <li class="mobile-nav-item"><!----></li></ul></div></div></div> <div class="content-wrapper"><div id="vuepress-theme-blog__post-layout"><article itemscope="itemscope" itemtype="https://schema.org/BlogPosting" class="vuepress-blog-theme-content"><header><h1 itemprop="name headline" class="post-title">
+        Nil Interface{} Variadic Options In Go.
+      </h1> <div class="post-meta"><div itemprop="publisher author" itemtype="http://schema.org/Person" itemscope="itemscope" class="post-meta-author"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-navigation"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg> <span itemprop="name">Ahmed Waleed</span> <span itemprop="address">   in Dubai, UAE</span></div> <div class="post-meta-date"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> <time pubdate itemprop="datePublished" datetime="2025-2-01">
+      Sat Feb 01 2025
+    </time></div> <ul itemprop="keywords" class="post-meta-tags"><li class="post-tag" data-v-42ccfcd5><a href="/tag/golang" data-v-42ccfcd5><span data-v-42ccfcd5>golang</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/api" data-v-42ccfcd5><span data-v-42ccfcd5>api</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/interface" data-v-42ccfcd5><span data-v-42ccfcd5>interface</span></a></li><li class="post-tag" data-v-42ccfcd5><a href="/tag/testing" data-v-42ccfcd5><span data-v-42ccfcd5>testing</span></a></li></ul></div></header> <div itemprop="articleBody" class="content__default"><p>In Go, variadic options provide a flexible way to structure your API, similar to the <strong>functional options</strong> pattern, allowing your API to evolve over time. I assume you're already familiar with functional options—if not, I highly recommend reading <a href="https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis" target="_blank" rel="noopener noreferrer">Dave Cheney’s blog<svg xmlns="http://www.w3.org/2000/svg" aria-labelledby="outbound-link-title" role="img" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><title id="outbound-link-title">(opens new window)</title> <path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> on the topic.</p> <p>A <strong>nil interface variadic options API</strong> functions similarly to the functional options pattern, except that instead of accepting functions, it takes values of type (<code>any</code> or <code>interface{}</code>). This approach is particularly useful in tests, as it enables reusable, configurable code with less boilerplate than the functional options pattern. However, handling a variadic <code>any</code> parameter often requires additional code to process different option types.</p> <p>Let’s see this in action. The following example defines <code>runServer</code>, a test function that initializes a <code>*TestServer</code> and invokes the provided test function (<code>fn</code>). The function also accepts variadic <code>any</code> parameters to configure the <code>*TestServer</code> based on the given options.</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;net/http&quot;</span>
+	<span class="token string">&quot;net/http/httptest&quot;</span>
+	<span class="token string">&quot;time&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">type</span> Addr <span class="token builtin">string</span> <span class="token comment">// Address to listen on. Default is &quot;:0&quot;.</span>
+
+<span class="token keyword">type</span> TestServer <span class="token keyword">struct</span> <span class="token punctuation">{</span>
+	<span class="token operator">*</span>httptest<span class="token punctuation">.</span>Server
+	<span class="token comment">// Wait after *httptest.Server starts</span>
+	<span class="token comment">// and before 	func(*TestServer) runs.</span>
+	delay time<span class="token punctuation">.</span>Duration
+	<span class="token comment">// Default handler to use</span>
+	<span class="token comment">// in httptest.NewServer.</span>
+	h     http<span class="token punctuation">.</span>Handler
+	addr  Addr
+<span class="token punctuation">}</span>
+
+<span class="token comment">// runServer configures and starts a new *TestServer,</span>
+<span class="token comment">// then executes the provided test function.</span>
+<span class="token keyword">func</span> <span class="token function">runServer</span><span class="token punctuation">(</span>fn <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token operator">*</span>TestServer<span class="token punctuation">)</span><span class="token punctuation">,</span> opts <span class="token operator">...</span>any<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ts <span class="token operator">:=</span> <span class="token operator">&amp;</span>TestServer<span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+	<span class="token keyword">var</span> h http<span class="token punctuation">.</span>Handler
+		<span class="token keyword">for</span> <span class="token boolean">_</span><span class="token punctuation">,</span> opt <span class="token operator">:=</span> <span class="token keyword">range</span> opts <span class="token punctuation">{</span>
+			<span class="token keyword">switch</span> v <span class="token operator">:=</span> opt<span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token keyword">type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">case</span> time<span class="token punctuation">.</span>Duration<span class="token punctuation">:</span>
+			ts<span class="token punctuation">.</span>delay <span class="token operator">=</span> v
+		<span class="token keyword">case</span> Addr<span class="token punctuation">:</span>
+			<span class="token keyword">if</span> v <span class="token operator">==</span> <span class="token string">&quot;&quot;</span> <span class="token punctuation">{</span>
+				v <span class="token operator">=</span> <span class="token string">&quot;:0&quot;</span>
+			<span class="token punctuation">}</span>
+			ts<span class="token punctuation">.</span>addr <span class="token operator">=</span> v
+		<span class="token keyword">case</span> http<span class="token punctuation">.</span>Handler<span class="token punctuation">:</span>
+			h <span class="token operator">=</span> v
+		<span class="token keyword">case</span> http<span class="token punctuation">.</span>HandlerFunc<span class="token punctuation">:</span>
+			h <span class="token operator">=</span> v
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+
+	ts<span class="token punctuation">.</span>Server <span class="token operator">=</span> httptest<span class="token punctuation">.</span><span class="token function">NewServer</span><span class="token punctuation">(</span>h<span class="token punctuation">)</span>
+	<span class="token keyword">defer</span> ts<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+	time<span class="token punctuation">.</span><span class="token function">AfterFunc</span><span class="token punctuation">(</span>ts<span class="token punctuation">.</span>delay<span class="token punctuation">,</span> <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token function">fn</span><span class="token punctuation">(</span>ts<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Looking at the <code>for _, opt := range opts</code> loop and <code>switch v := opt.(type)</code> statement in <code>runServer</code>, you’ll notice that handling options requires additional code compared to the functional options pattern. However, the key difference lies in how options are passed when calling runServer. Let's write a example test using runServer and configure it with a few options.</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token keyword">func</span> <span class="token function">TestHTTP_StatusOk</span><span class="token punctuation">(</span>t <span class="token operator">*</span>testing<span class="token punctuation">.</span>T<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	handler <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">HandlerFunc</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>w http<span class="token punctuation">.</span>ResponseWriter<span class="token punctuation">,</span> r <span class="token operator">*</span>http<span class="token punctuation">.</span>Request<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		w<span class="token punctuation">.</span><span class="token function">WriteHeader</span><span class="token punctuation">(</span>http<span class="token punctuation">.</span>StatusOK<span class="token punctuation">)</span>
+		w<span class="token punctuation">.</span><span class="token function">Write</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token function">byte</span><span class="token punctuation">(</span><span class="token string">&quot;Ok&quot;</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+	<span class="token function">runServer</span><span class="token punctuation">(</span><span class="token keyword">func</span><span class="token punctuation">(</span>ts <span class="token operator">*</span>TestServer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		resp<span class="token punctuation">,</span> err <span class="token operator">:=</span> http<span class="token punctuation">.</span><span class="token function">Get</span><span class="token punctuation">(</span>ts<span class="token punctuation">.</span>URL<span class="token punctuation">)</span>
+		<span class="token keyword">if</span> err <span class="token operator">!=</span> <span class="token boolean">nil</span> <span class="token punctuation">{</span>
+			t<span class="token punctuation">.</span><span class="token function">Fatalf</span><span class="token punctuation">(</span><span class="token string">&quot;failed to send request: %v&quot;</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+		<span class="token keyword">defer</span> resp<span class="token punctuation">.</span>Body<span class="token punctuation">.</span><span class="token function">Close</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+		<span class="token keyword">if</span> resp<span class="token punctuation">.</span>StatusCode <span class="token operator">!=</span> http<span class="token punctuation">.</span>StatusOK <span class="token punctuation">{</span>
+			t<span class="token punctuation">.</span><span class="token function">Errorf</span><span class="token punctuation">(</span><span class="token string">&quot;want status 200, got %d&quot;</span><span class="token punctuation">,</span> resp<span class="token punctuation">.</span>StatusCode<span class="token punctuation">)</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span><span class="token punctuation">,</span> time<span class="token punctuation">.</span>Millisecond<span class="token operator">*</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token function">Addr</span><span class="token punctuation">(</span><span class="token string">&quot;:8080&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> handler<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>Notice how runServer is called with options as values:</p> <div class="language- extra-class"><pre class="language-text"><code>time.Millisecond*50, Addr(&quot;:8080&quot;), handler
+</code></pre></div><p>If we were using a functional options API, the call would look like this:</p> <div class="language- extra-class"><pre class="language-text"><code>WithDelay(time.Millisecond*50), WithAddr(&quot;:8081&quot;), WithHandler(handler)
+</code></pre></div><p>While the difference in usage is minimal, the key difference is in how the API itself is structured. Defining the functional options API requires writing additional functions, as shown below:</p> <div class="language-go extra-class"><pre class="language-go"><code><span class="token comment">// Option defines a function that configures TestServer</span>
+<span class="token keyword">type</span> Option <span class="token keyword">func</span><span class="token punctuation">(</span><span class="token operator">*</span>TestServer<span class="token punctuation">)</span>
+
+<span class="token comment">// WithDelay sets a delay before running the test function</span>
+<span class="token keyword">func</span> <span class="token function">WithDelay</span><span class="token punctuation">(</span>d time<span class="token punctuation">.</span>Duration<span class="token punctuation">)</span> Option <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span>ts <span class="token operator">*</span>TestServer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>delay <span class="token operator">=</span> d
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// WithAddr sets the address for the server</span>
+<span class="token keyword">func</span> <span class="token function">WithAddr</span><span class="token punctuation">(</span>addr Addr<span class="token punctuation">)</span> Option <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span>ts <span class="token operator">*</span>TestServer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		<span class="token keyword">if</span> addr <span class="token operator">==</span> <span class="token string">&quot;&quot;</span> <span class="token punctuation">{</span>
+			addr <span class="token operator">=</span> <span class="token string">&quot;:0&quot;</span>
+		<span class="token punctuation">}</span>
+		ts<span class="token punctuation">.</span>addr <span class="token operator">=</span> addr
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// WithHandler sets the HTTP handler</span>
+<span class="token keyword">func</span> <span class="token function">WithHandler</span><span class="token punctuation">(</span>h http<span class="token punctuation">.</span>Handler<span class="token punctuation">)</span> Option <span class="token punctuation">{</span>
+	<span class="token keyword">return</span> <span class="token keyword">func</span><span class="token punctuation">(</span>ts <span class="token operator">*</span>TestServer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+		ts<span class="token punctuation">.</span>h <span class="token operator">=</span> h
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="key-takeaways"><a href="#key-takeaways" class="header-anchor">#</a> Key Takeaways</h3> <p>The <strong>nil interface options API</strong> is not a replacement for functional options but rather an alternative pattern that can be useful in <strong>tests</strong> where common test utilities require configurable options.</p> <h4 id="summary"><a href="#summary" class="header-anchor">#</a> <strong>Summary:</strong></h4> <ul><li><strong>Nil interface options</strong> can be useful when designing test utilities.</li> <li><strong>More flexible but prone to incorrect argument order</strong> due to lack of structure.</li> <li><strong>No compile-time type enforcement</strong>, unlike the functional options pattern.</li></ul> <p>Both patterns have their place—choosing between them depends on the level of flexibility and type safety you need.</p></div> <footer><!----> <hr> <!----></footer></article> <div class="sticker vuepress-toc"><div class="vuepress-toc-item vuepress-toc-h3 active"><a href="#key-takeaways" title="Key Takeaways">Key Takeaways</a></div></div></div></div> <footer class="footer" data-v-3d9deeb8><div class="footer-left-wrap" data-v-3d9deeb8><ul class="contact" data-v-3d9deeb8><li class="contact-item" data-v-3d9deeb8><a href="https://github.com/AhmadWaleed" target="_blank" rel="noopener noreferrer" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github" data-v-3d9deeb8><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" data-v-3d9deeb8></path></svg>
+          
+        </a></li><li class="contact-item" data-v-3d9deeb8><a href="mailto:ahmedwaleed11599@gmail.com" class="nav-link external" data-v-3d9deeb8><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail" data-v-3d9deeb8><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" data-v-3d9deeb8></path><polyline points="22,6 12,13 2,6" data-v-3d9deeb8></polyline></svg>
+          
+        </a></li></ul></div> <div class="footer-right-wrap" data-v-3d9deeb8><ul class="copyright" data-v-3d9deeb8><li class="copyright-item" data-v-3d9deeb8>Ahmed Waleed © 2022</li></ul></div></footer></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.5a34f3f5.js" defer></script><script src="/assets/js/6.743e9d74.js" defer></script><script src="/assets/js/3.c32d983c.js" defer></script><script src="/assets/js/18.474a133a.js" defer></script>
+  </body>
+</html>
