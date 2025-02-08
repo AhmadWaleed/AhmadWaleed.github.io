@@ -17,7 +17,7 @@ Keeping the persistence layer decoupled via interfaces allows us to keep databas
 
 **How Does the Persistence Layer Get Tightly Coupled?**
 
-You might think that defining a repository interface ensures complete decoupling. However, this is not the case because every database management system (DBMS) has a common way to store data, whether they call it a tuple, table, record, or object. These concepts inevitably leak into abstractions one way or another.
+You might think that defining a repository interface ensures complete decoupling. However, this is not the case because every database management system (DBMS) has a common way to store data, whether they call it a tuple, record, or object in a table. These concepts inevitably leak into abstractions one way or another.
 
 As a result, different domain use cases might not match the repository interface operations, forcing us to name them based on database-specific details rather than business logic.
 
@@ -56,7 +56,7 @@ A naive approach would be to define an `UpdateOrder` method that handles both 
 package order
 
 type OrderRepository interface {
-    UpdateOrder(ctx context.Context, order Order) (orderID int, error)
+    UpdateOrder(ctx context.Context, order Order) (orderID int, err error)
 }
 ```
 
@@ -173,7 +173,7 @@ Yes! Views preserve ACID properties because they ultimately operate on the base 
 ### When Should You Use This Approach?
 
 - If your business logic requires separating different update responsibilities.
-- If you want database-enforced constraints without adding complex validation logic in Go.
+- If you want database-enforced constraints without adding complex validation logic in business logic.
 - If you need clean repository interfaces that align with business operations.
 
 ### When Not to Use It?
