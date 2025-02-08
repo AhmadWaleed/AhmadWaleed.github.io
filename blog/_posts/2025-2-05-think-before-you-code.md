@@ -257,40 +257,6 @@ func (report *AnalysisReport) Add(entry LogEntry) {
     }
 }
 
-type AnalysisReport struct {
-    TotalEntries int
-    Info         int
-    Warn         int
-    Error        int
-    Debug        int
-    ResponseTime []float64 // in ms
-}
-
-func (report *AnalysisReport) Add(entry LogEntry) {
-    report.TotalEntries++
-
-    // Record the log level count.
-    switch strings.ToLower(entry.level) {
-    case LevelInfo:
-        report.Info++
-    case LevelWarn:
-        report.Warn++
-    case LevelError:
-        report.Error++
-    case LevelDebug:
-        report.Debug++
-    }
-
-    // Record the response time.
-    if strings.HasSuffix(entry.message, "ms") {
-        words := strings.Split(strings.TrimSuffix(entry.message, " ms"), " ")
-        respTime := words[len(words)-1]
-        if n, err := strconv.ParseFloat(respTime, 64); err == nil {
-            report.ResponseTime = append(report.ResponseTime, float64(n))
-        }
-    }
-}
-
 func (r *AnalysisReport) Print() {
     fmt.Printf("Total Log Entries: %d\n", r.TotalEntries)
     fmt.Printf("INFO: %d\n", r.Info)
