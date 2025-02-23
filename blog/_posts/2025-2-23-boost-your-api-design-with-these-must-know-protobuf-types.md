@@ -53,7 +53,8 @@ message TimePeriod {
     int64 seconds = 2;
   }
 }
-``````go
+```
+```go
 // Example usage in Golang.
 p := &TimePeriod{
     Duration: "5d",  // Setting duration in days
